@@ -1,7 +1,7 @@
 import math
 
 
-class Point:
+class Vector:
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
@@ -12,13 +12,17 @@ class Point:
         x += distance * math.cos(radians)
         y += distance * math.sin(radians)
         if copy:
-            return Point(x, y)
+            return Vector(x, y)
         else:
             self.x = x
             self.y = y
 
     def copy(self):
-        return Point(*self)
+        return Vector(*self)
+
+    def rotate(self, angle):
+        self.x = self.x * math.cos(angle) - self.y * math.sin(angle)
+        self.y = self.x * math.sin(angle) + self.y * math.cos(angle)
 
     @staticmethod
     def x_distance(a, b):
@@ -30,6 +34,14 @@ class Point:
         if absolute:
             return abs(a.y - b.y)
         return dist
+
+    def __add__(self, other):
+        x, y = other
+        return Vector(self.x + x, self.y + y)
+
+    def __sub__(self, other):
+        x, y = other
+        return Vector(self.x - x, self.y - y)
 
     def __str__(self):
         return f'Point({self.x}, {self.y})'

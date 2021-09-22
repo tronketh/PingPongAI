@@ -1,7 +1,7 @@
 import numpy as np
 import pygame
 from game import constants
-from game.coordinate_system.point import Point
+from game.coordinate_system.vector import Vector
 from game.game_objects.bat import Bat, BatDirection
 from game.game_objects.ball import Ball
 from game.game_objects.collider_type import ColliderType
@@ -25,13 +25,13 @@ class PingPong:
         self.clock = pygame.time.Clock()
         self.screen.fill(constants.BLACK)
 
-        left_bat = Bat(position=Point(constants.INDENTS, (constants.HEIGHT - constants.BAT_HEIGHT) / 2))
-        right_bat = Bat(position=Point(constants.WIDTH - constants.INDENTS,
-                                       (constants.HEIGHT - constants.BAT_HEIGHT) / 2))
+        left_bat = Bat(position=Vector(constants.INDENTS, (constants.HEIGHT - constants.BAT_HEIGHT) / 2))
+        right_bat = Bat(position=Vector(constants.WIDTH - constants.INDENTS,
+                                        (constants.HEIGHT - constants.BAT_HEIGHT) / 2))
         self.bats = [left_bat, right_bat]
         self.current_bat = self.bats[1]
         self.current_bat.can_move = True
-        self.ball = Ball(position=Point(constants.WIDTH / 2, constants.HEIGHT / 2))
+        self.ball = Ball(position=Vector(constants.WIDTH / 2, constants.HEIGHT / 2))
         self.game_objects = [self.ball, *self.bats]
 
         self.score = 0
