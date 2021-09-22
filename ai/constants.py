@@ -1,0 +1,6 @@
+REWARD = 100
+PENALTY = 200
+
+LR = 1e-3
+DECAY = 1e-6
+GAMMA = 0.9
