@@ -18,7 +18,7 @@ class PingPong:
         successes, failures = pygame.init()
         print("{0} successes and {1} failures".format(successes, failures))
         pygame.font.init()
-        pygame.display.set_caption('Snake game')
+        pygame.display.set_caption('Ping Pong')
 
         self.font = pygame.font.SysFont('Comic Sans MS', constants.FONT_SIZE)
         self.screen = pygame.display.set_mode((constants.WIDTH, constants.HEIGHT))
