@@ -21,8 +21,9 @@ class Vector:
         return Vector(*self)
 
     def rotate(self, angle):
-        self.x = self.x * math.cos(angle) - self.y * math.sin(angle)
-        self.y = self.x * math.sin(angle) + self.y * math.cos(angle)
+        radians = math.radians(angle)
+        self.x = self.x * math.cos(radians) - self.y * math.sin(radians)
+        self.y = self.x * math.sin(radians) + self.y * math.cos(radians)
 
     @staticmethod
     def x_distance(a, b):

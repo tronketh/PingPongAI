@@ -12,7 +12,7 @@ BATCH_SIZE = 1000
 class Agent:
     def __init__(self):
         self.game = PingPong()
-        self.game_ai = GameAI(2, 2)
+        self.game_ai = GameAI(2, 3)
         # self.game_ai.load()
 
         self.n_games = 0
@@ -37,15 +37,15 @@ class Agent:
 
     def get_move(self, state, game_limit=80):
         self.epsilon = game_limit - self.n_games
-        final_move = np.array([0, 0])
+        final_move = np.array([0, 0, 0])
         if random.randint(0, 200) < self.epsilon:
-            move = random.randint(0, 1)
+            move = random.randint(0, 2)
             final_move[move] = 1
         else:
             state0 = state.copy()
             prediction = np.array(self.game_ai.model_train_predict(state0, training=False))
-            max_val = np.max(prediction)
-            final_move = prediction[0] == max_val
+            max_idx = np.argmax(prediction)
+            final_move[max_idx] = 1
         return final_move.astype(float)
 
     def play_train(self):

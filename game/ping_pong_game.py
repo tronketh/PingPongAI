@@ -61,13 +61,11 @@ class PingPong:
                     break
             pressed = pygame.key.get_pressed()
             if pressed[pygame.K_w]:
-                key_press = True
-                self.__play_step([1, 0])
+                self.__play_step([1, 0, 0])
             elif pressed[pygame.K_s]:
-                key_press = True
-                self.__play_step([0, 1])
-            if not key_press:
-                self.__play_step([0, 0])
+                self.__play_step([0, 1, 0])
+            else:
+                self.__play_step([0, 0, 1])
 
     def play_ai(self, action):
         for event in pygame.event.get():
@@ -91,9 +89,9 @@ class PingPong:
         self.clock.tick(constants.FPS)
         self.reward = 0
 
-        if np.array_equal(action, [1, 0]):
+        if np.array_equal(action, [1, 0, 0]):
             self.current_bat.change_direction(BatDirection.UP)
-        elif np.array_equal(action, [0, 1]):
+        elif np.array_equal(action, [0, 1, 0]):
             self.current_bat.change_direction(BatDirection.DOWN)
 
         if self.current_bat.ball_collision(self.ball):

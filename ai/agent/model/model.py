@@ -17,7 +17,6 @@ class GameAI:
         inputs = Input(input_num, )
         x = inputs
         x = Dense(128, activation='leaky_relu')(x)
-        x = Dense(32, activation='leaky_relu')(x)
         x = Dense(output_num, activation='leaky_relu')(x)
         outputs = x
         self.model = Model(inputs, outputs)
